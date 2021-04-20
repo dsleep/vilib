@@ -59,7 +59,8 @@ endif()
 find_package(OpenCV REQUIRED COMPONENTS core)
 find_package(Eigen3 REQUIRED)
 
-option(BUILD_SHARED_LIBS "build shared libraries" ON)
+//DS - TODO ALL WIN32 STUFF HACKY DETECT OS IF REAL UPDATE
+option(BUILD_SHARED_LIBS "build shared libraries" OFF)
 cmake_print_variables(BUILD_SHARED_LIBS)
 
 
@@ -71,9 +72,9 @@ file(GLOB_RECURSE VILIB_SOURCES
 )
 
 if (CMAKE_CUDA_COMPILER)
-   add_library(vilib SHARED ${VILIB_SOURCES})
+   add_library(vilib STATIC ${VILIB_SOURCES})
 else()
-   cuda_add_library(vilib SHARED ${VILIB_SOURCES})
+   cuda_add_library(vilib STATIC ${VILIB_SOURCES})
 endif()
 
 # the PUBLIC keyword means that any targets linking to this
@@ -106,7 +107,7 @@ target_link_libraries(vilib PUBLIC
 
 # Set different compiler options for cxx and nvcc
 
-set(cxx_options -Wall -Wextra -Werror -Wfatal-errors -ffast-math -fsee -fno-signed-zeros -fno-math-errno -funroll-loops -fno-finite-math-only -march=native -O3 -DNDEBUG)
+#set(cxx_options -Wall -Wextra -Werror -Wfatal-errors -ffast-math -fsee -fno-signed-zeros -fno-math-errno -funroll-loops -fno-finite-math-only -march=native -O3 -DNDEBUG)
 set(nvcc_options --device-w --ftz=true --prec-div=false --prec-sqrt=false --fmad=true --default-stream per-thread -O3 -DNDEBUG)
 
 # the generator is only expanded if <COMPILE_LANGUAGE:FOO> evaluates to true

@@ -107,7 +107,7 @@ xys* nonmax_suppression(const xy* corners, const int* scores, int num_corners, i
 			}
 		}
 		
-		ret_nonmax[num_nonmax++] = {.x = pos.x, .y = pos.y, .s = score};
+		ret_nonmax[num_nonmax++] = { pos.x, pos.y, score};
 		cont:
 			;
 	}

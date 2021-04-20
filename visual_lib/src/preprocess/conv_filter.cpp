@@ -56,30 +56,31 @@ namespace vilib {
                                                       cudaStream_t stream)
 
 // 3x3 filters
-static const filter3x3_t mean_filter_3x3 { .d = {1.0f/9.0f, 1.0f/9.0f, 1.0f/9.0f,
+static const filter3x3_t mean_filter_3x3 { {1.0f/9.0f, 1.0f/9.0f, 1.0f/9.0f,
                                                  1.0f/9.0f, 1.0f/9.0f, 1.0f/9.0f,
                                                  1.0f/9.0f, 1.0f/9.0f, 1.0f/9.0f}};
-static const filter3x3_t gaussian_filter_3x3 { .d = {0.0625f, 0.125f, 0.0625f,
+static const filter3x3_t gaussian_filter_3x3 { {0.0625f, 0.125f, 0.0625f,
                                                      0.1250f, 0.250f, 0.1250f,
                                                      0.0625f, 0.125f, 0.0625f}};
-static const filter3x3_t prewitt_gx_filter_3x3 { .d = {-1.0f, 0.0f, +1.0f,
+static const filter3x3_t prewitt_gx_filter_3x3 { {-1.0f, 0.0f, +1.0f,
                                                        -1.0f, 0.0f, +1.0f,
                                                        -1.0f, 0.0f, +1.0f}};
-static const filter3x3_t prewitt_gy_filter_3x3 { .d = {-1.0f, -1.0f, -1.0f,
+static const filter3x3_t prewitt_gy_filter_3x3 {  {-1.0f, -1.0f, -1.0f,
                                                        0.0f, 0.0f, 0.0f,
                                                        +1.0f, +1.0f, +1.0f}};
-static const filter3x3_t sobel_gx_filter_3x3 { .d = {-1.0f, 0.0f, +1.0f,
+static const filter3x3_t sobel_gx_filter_3x3 {  {-1.0f, 0.0f, +1.0f,
                                                      -2.0f, 0.0f, +2.0f,
                                                      -1.0f, 0.0f, +1.0f}};
-static const filter3x3_t sobel_gy_filter_3x3 { .d = {-1.0f, -2.0f, -1.0f,
+static const filter3x3_t sobel_gy_filter_3x3 { {-1.0f, -2.0f, -1.0f,
                                                      0.0f, 0.0f, 0.0f,
                                                      +1.0f, +2.0f, +1.0f}};
 // 1x3 filters
-static const filter1x3_t diff_filter_1x3 { .d = {-1.0f, 0.0f, 1.0f }};
-static const filter1x3_t prewitt_filter_1x3 { .d = {1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f }};
-static const filter1x3_t sobel_filter_1x3 { .d = {0.25f, 0.5f, 0.25f }};
-static const filter1x3_t gaussian_filter_1x3 { .d = {0.25f, 0.50f, 0.25f }};
-static const filter1x3_t mean_filter_1x3 { .d = {1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f }};
+static const filter1x3_t diff_filter_1x3 { {-1.0f, 0.0f, 1.0f }};
+static const filter1x3_t prewitt_filter_1x3 {  {1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f }};
+static const filter1x3_t sobel_filter_1x3 {  {0.25f, 0.5f, 0.25f }};
+static const filter1x3_t gaussian_filter_1x3 {  {0.25f, 0.50f, 0.25f }};
+static const filter1x3_t mean_filter_1x3 {  {1.0f/3.0f, 1.0f/3.0f, 1.0f/3.0f }};
+
 
 const filter3x3_t & conv_filter_get3x3(const conv_filter_type_t filter_type) noexcept {
   switch(filter_type) {
